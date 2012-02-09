@@ -10,3 +10,7 @@
 
 (assert (= "1,2,Fizz,4,Buzz,Fizz,7,8,Fizz,Buzz,11,Fizz,13,14,FizzBuzz,16,17,Fizz,19,Buzz"
            (str/join "," (take 20 fizzbuzz))))
+
+;; fizzbuzz is an infinite, lazy sequence:
+(take 20 (drop 1000001 fizzbuzz))
+;;user=> ("Fizz" 1000003 1000004 "FizzBuzz" 1000006 1000007 "Fizz" 1000009 "Buzz" "Fizz" 1000012 1000013 "Fizz" "Buzz" 1000016 "Fizz" 1000018 1000019 "FizzBuzz" 1000021)
