@@ -1,6 +1,9 @@
 ;; Since we don't have sweet pattern matching (in stock Clojure at
 ;; least), we can work around it with cond and some helper fns.
 
+;; Note that #(...) syntax is simply a lambda where %, %1, %2, ..., %&
+;; are its args.  It's short for (fn [] ...).
+
 (defn fizzbuzz [n]
   (let [m #(zero? (mod %2 %1))
         f #(m 3 %)
@@ -30,3 +33,5 @@
 ;; Fizz 67 68 Fizz Buzz 71 Fizz 73 74 FizzBuzz 76 77 Fizz 79 Buzz Fizz
 ;; 82 83 Fizz Buzz 86 Fizz 88 89 FizzBuzz 91 92 Fizz 94 Buzz Fizz 97
 ;; 98 Fizz Buzz
+
+
