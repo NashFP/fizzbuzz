@@ -1,10 +1,10 @@
 (defn fizzbuzz [n]
   (let [divisible-by? (fn [div num] (= 0 (mod num div)))]
-    (condp divisible-by? %
+    (condp divisible-by? n
       15 "FizzBuzz"
       3 "Fizz"
       5 "Buzz"
-      %)))
+      n)))
 
 (defn fizz-n-and-a-buzz-n
   "Read procedure name using your Cosby voice."
