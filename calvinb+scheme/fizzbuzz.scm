@@ -1,12 +1,3 @@
-; As far as I know, we have to create our own range function.
-(define (range min max)
-    ; An iterative inner function to make it tail-recursive
-    (define (range_iter min max acc)
-        (if (< max min)
-            acc
-            (range_iter (+ min 1) max (append acc (list min)))))
-    (range_iter min max (list)))
-
 ; The function for a single term
 (define (fizzbuzz x)
     ; A pseudo-hash
@@ -19,7 +10,8 @@
             (= 0 (modulo x (first pair))))
     (cadar (filter divides? mappings)))
 
-(map fizzbuzz (range 1 100))
+(map fizzbuzz (for*/list ((i (in-range 1 101))) i))
+; Thanks, Caleb.
 
 ; This looks like a lot of code. Is my Scheme just that bad?
 ; I initially had the modulo conditions in-line.
