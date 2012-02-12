@@ -2,17 +2,21 @@
 (define (fizzbuzz x)
     ; A pseudo-hash
     (define mappings
-            (list (list 15 "FizzBuzz")
-                  (list 5 "Buzz")
-                  (list 3 "Fizz")
-                  (list 1 x)))
-    (define (divides? pair)
-            (= 0 (modulo x (first pair))))
-    (cadar (filter divides? mappings)))
+            (list (cons 3 "Fizz")
+                  (cons 5 "Buzz")))
+    (define (factor-label pair)
+            (if (= 0 (modulo x (car pair)))
+                (cdr pair)
+                ""))
+    (define (num_or_label num label)
+            (if (equal? label "") num label))
+    (num_or_label x (foldr string-append "" (map factor-label mappings))))
 
 (map fizzbuzz (for*/list ((i (in-range 1 101))) i))
-; Thanks, Caleb.
 
-; This looks like a lot of code. Is my Scheme just that bad?
 ; I initially had the modulo conditions in-line.
 ; It might have been a little shorter, but it looked too repetitive to me.
+;
+; This is feeling much better to me now. It was driving me crazy that my mapping
+; of 15 to FizzBuzz was really duplication of the 3 and 5 mappings.
+; I cleaned that up by concatenating all applicable factor labels with foldr string-append.
