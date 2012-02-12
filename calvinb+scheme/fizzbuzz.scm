@@ -8,9 +8,9 @@
             (if (= 0 (modulo x (car pair)))
                 (cdr pair)
                 ""))
-    (define (num_or_label num label)
+    (define (num-or-label num label)
             (if (equal? label "") num label))
-    (num_or_label x (foldr string-append "" (map factor-label mappings))))
+    (num-or-label x (foldr string-append "" (map factor-label mappings))))
 
 (map fizzbuzz (for*/list ((i (in-range 1 101))) i))
 
