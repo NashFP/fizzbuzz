@@ -1,10 +1,12 @@
 #lang racket
 
 ;Going to commit these in steps to see how you get from point a to b. 
-;The slightly more advanced recursive method, using an iterative recursion 
-;Perhaps a week 2 approach
-;again, Definitely not as learned as Calvin's 
+;Now we'll collapse our fizz-buzz iterator into a generalized iterator
+;passing functions instead
+;Perhaps a week 3 approach
+;yet again, Definitely not as learned as Calvin's 
 (define (fizzbuzz-from-n-to-k n k)
+  (define (increment x) (+ x 1))
   (define (no-remainder? x y)
     (= (modulo x y) 0))
   (define (get-x-fizz-or-buzz x)
@@ -12,17 +14,14 @@
           ((no-remainder? x 5) "buzz")
           ((no-remainder? x 3) "fizz")
           (else (number->string x))))
-  ;now we've got another inner procedure that captures the recursive algorithm
-  ;but this time we pass along the string
-  (define (fz-bz-iter s n k)
-    (if (= n k)
-      (string-append s (get-x-fizz-or-buzz n))
-      (fz-bz-iter (string-append s (get-x-fizz-or-buzz n))
-                  (+ n 1)
-                  k)))
-  (fz-bz-iter (get-x-fizz-or-buzz n) (+ n 1) k))
-
-
+  ;f will be our fizz buzz called on any j from n to k
+  ;op is the accumulator operation
+  ;next tells us how to get to the next j from n to k... (which, lol, boundary conditions could fail us there.)
+  (define (iter f op next s n k)
+    (if (>= n k)
+      (op s (f n))
+      (iter f op next (op s (f n)) (next n) k)))
+  (iter get-x-fizz-or-buzz string-append increment (get-x-fizz-or-buzz n) (increment n) k))
 
 
 
