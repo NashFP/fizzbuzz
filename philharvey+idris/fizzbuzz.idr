@@ -10,7 +10,9 @@ isFizzBuzz : Nat -> Bool
 isFizzBuzz n = modNat n 15 == 0
 
 fizzbuzz : String -> Nat -> String
-fizzbuzz s n = if isFizzBuzz n then s ++ "Fizz Buzz, " else (if isFizz n then s ++ "Fizz, " else (if isBuzz n then s ++ "Buzz, " else s ++ show n ++ ", "))
+fizzbuzz s n = if isFizzBuzz n then s ++ "Fizz Buzz, " else
+  (if isFizz n then s ++ "Fizz, " else
+  (if isBuzz n then s ++ "Buzz, " else s ++ show n ++ ", "))
 
 main : IO ()
 main = putStrLn $ foldl fizzbuzz "" [1..100]
