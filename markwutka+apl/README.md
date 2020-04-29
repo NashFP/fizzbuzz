@@ -17,7 +17,7 @@ Within the anonymous function, the ⍵ represents the argument to the function (
 5 3|⍵ computes the remainder of ⍵ divided by each of the items in the array [5 3], so 5 3 | 9 would be [4 0]. By putting 0= in front of that, it says take that array of remainders and compare each with 0, returning 1 if it =0 or 0 if not. So if 5 3|⍵ resulted in [4 0], the =0 [4 0] would result in [0 1].
 
 	2⊥
-Next, the 2⊥ applied to the result converts the array of 1s and 0s to a binary number, and with only 2 bits, that means 4 values. If ⍵ is neither divisible by 3 or 5, the array will be [0 0], if it is divisible by 3, the result is [0 1], if divisible by 5 it is [1 0] and if divisible by both 3 and 5, it is [1 1]. We use the resulting number, to index into the array [⍵ 'Fizz' 'Buzz' 'FizzBuzz'] to get the result for that number.
+Next, the 2⊥ applied to the result converts the array of 1s and 0s to a binary number (the 2 indicating the base), and with only 2 bits, that means 4 values. If ⍵ is neither divisible by 3 or 5, the array will be [0 0], if it is divisible by 3, the result is [0 1], if divisible by 5 it is [1 0] and if divisible by both 3 and 5, it is [1 1]. We use the resulting number, to index into the array [⍵ 'Fizz' 'Buzz' 'FizzBuzz'] to get the result for that number.
 
 If you have installed GNU APL, you can just do:
 
